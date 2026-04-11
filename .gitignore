@@ -3,4 +3,7 @@ dist/
 build/
 .env
 *.log
-.DS_Store
+.DS_Storenode_modules/
+.env
+build/
+dist/
