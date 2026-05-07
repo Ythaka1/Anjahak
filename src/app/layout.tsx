@@ -71,6 +71,9 @@ export const metadata: Metadata = {
     description:
       "Premium organic agricultural exports from Kenya to global markets.",
   },
+  verification: {
+    google: "tb3hsAL5kX_trr5AX8cUx7wvohCRIcjYQkW-lEdInZs",
+  },
 };
 
 export default function RootLayout({
