@@ -139,13 +139,23 @@ export default function Footer() {
           {/* Column 1 — About */}
           <div className="space-y-5">
             <Link href="/" className="flex items-center gap-3">
-              <Image
-                src="/images/logo.png"
-                alt="AnjaHak Enterprises"
-                width={56}
-                height={56}
-                className="object-contain brightness-0 invert"
-              />
+              <div
+                style={{
+                  backgroundColor: "rgba(250,246,238,0.92)",
+                  borderRadius: "8px",
+                  padding: "5px",
+                  display: "inline-flex",
+                }}
+              >
+                <Image
+                  src="/images/logo.png"
+                  alt="AnjaHak Enterprises"
+                  width={46}
+                  height={46}
+                  className="object-contain"
+                  style={{ mixBlendMode: "multiply" }}
+                />
+              </div>
               <div className="flex flex-col leading-tight">
                 <span
                   className="font-heading font-bold text-lg leading-none"

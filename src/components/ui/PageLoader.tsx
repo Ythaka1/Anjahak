@@ -50,13 +50,20 @@ export default function PageLoader() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.2 }}
+              style={{
+                backgroundColor: "rgba(250,246,238,0.92)",
+                borderRadius: "16px",
+                padding: "10px",
+                display: "inline-flex",
+              }}
             >
               <Image
                 src="/images/logo.png"
                 alt="AnjaHak"
                 width={80}
                 height={80}
-                className="object-contain brightness-0 invert"
+                className="object-contain"
+                style={{ mixBlendMode: "multiply" }}
               />
             </motion.div>
           </motion.div>

@@ -32,13 +32,24 @@ export default function NotFound() {
       {/* Content */}
       <div className="relative -mt-10 flex flex-col items-center gap-6 text-center z-10">
         {/* Logo */}
-        <Image
-          src="/images/logo.png"
-          alt="AnjaHak Enterprises"
-          width={100}
-          height={100}
-          className="object-contain brightness-0 invert opacity-60 mb-2"
-        />
+        <div
+          style={{
+            backgroundColor: "rgba(250,246,238,0.15)",
+            borderRadius: "16px",
+            padding: "12px",
+            display: "inline-flex",
+            opacity: 0.75,
+          }}
+        >
+          <Image
+            src="/images/logo.png"
+            alt="AnjaHak Enterprises"
+            width={90}
+            height={90}
+            className="object-contain"
+            style={{ mixBlendMode: "multiply" }}
+          />
+        </div>
 
         <div className="space-y-3">
           <h1

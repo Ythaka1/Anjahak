@@ -67,16 +67,15 @@ export default function Navbar() {
               className="flex items-center gap-3 group"
               aria-label="AnjaHak Enterprises — Home"
             >
-              <div className="relative overflow-hidden rounded-sm">
-                <Image
-                  src="/images/logo.png"
-                  alt="AnjaHak Enterprises"
-                  width={52}
-                  height={52}
-                  priority
-                  className="object-contain transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
+              <Image
+                src="/images/logo.png"
+                alt="AnjaHak Enterprises"
+                width={52}
+                height={52}
+                priority
+                className="object-contain transition-transform duration-500 group-hover:scale-110"
+                style={{ mixBlendMode: "multiply" }}
+              />
               <div className="flex flex-col leading-tight">
                 <span
                   className="font-heading font-bold text-lg leading-none"
