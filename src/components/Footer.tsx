@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Mail, Phone, ChevronUp, CheckCircle, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -137,15 +138,29 @@ export default function Footer() {
 
           {/* Column 1 — About */}
           <div className="space-y-5">
-            <div className="flex items-center gap-2">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 22C12 22 4 16 4 9C4 5.13 7.13 2 11 2C14.87 2 18 5.13 18 9C18 16 12 22 12 22Z" fill="var(--gold)" opacity="0.85" />
-                <path d="M12 22C12 22 20 16 20 9C20 5.13 16.87 2 13 2" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-              </svg>
-              <h2 className="font-heading font-bold text-lg" style={{ color: "var(--parchment)" }}>
-                AnjaHak Enterprises
-              </h2>
-            </div>
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src="/images/logo.png"
+                alt="AnjaHak Enterprises"
+                width={56}
+                height={56}
+                className="object-contain brightness-0 invert"
+              />
+              <div className="flex flex-col leading-tight">
+                <span
+                  className="font-heading font-bold text-lg leading-none"
+                  style={{ color: "var(--parchment)" }}
+                >
+                  AnjaHak
+                </span>
+                <span
+                  className="font-label text-[0.65rem] tracking-widest uppercase"
+                  style={{ color: "rgba(250,246,238,0.45)" }}
+                >
+                  Enterprises
+                </span>
+              </div>
+            </Link>
             <p className="font-sans text-sm leading-relaxed" style={{ color: "rgba(250,246,238,0.65)" }}>
               A leading exporter of premium organic agricultural produce from
               Africa, dedicated to connecting the continent&apos;s rich harvests

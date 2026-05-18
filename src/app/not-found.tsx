@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Leaf, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -30,16 +31,14 @@ export default function NotFound() {
 
       {/* Content */}
       <div className="relative -mt-10 flex flex-col items-center gap-6 text-center z-10">
-        {/* Spinning leaf */}
-        <div
-          style={{
-            animation: "spin 8s linear infinite",
-            color: "var(--gold)",
-          }}
-          aria-hidden="true"
-        >
-          <Leaf size={48} />
-        </div>
+        {/* Logo */}
+        <Image
+          src="/images/logo.png"
+          alt="AnjaHak Enterprises"
+          width={100}
+          height={100}
+          className="object-contain brightness-0 invert opacity-60 mb-2"
+        />
 
         <div className="space-y-3">
           <h1

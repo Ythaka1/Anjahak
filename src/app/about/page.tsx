@@ -64,6 +64,27 @@ export default function AboutPage() {
           style={{ background: "linear-gradient(90deg, transparent, var(--gold), transparent)" }}
           aria-hidden="true"
         />
+        {/* Watermark logo — decorative */}
+        <div
+          style={{
+            position: "absolute",
+            right: "10%",
+            top: "50%",
+            transform: "translateY(-50%)",
+            opacity: 0.06,
+            pointerEvents: "none",
+          }}
+          aria-hidden="true"
+        >
+          <Image
+            src="/images/logo.png"
+            alt=""
+            width={400}
+            height={400}
+            className="object-contain brightness-0 invert"
+          />
+        </div>
+
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
           <motion.span
             className="section-label section-label--light"

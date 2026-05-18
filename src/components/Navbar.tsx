@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
@@ -13,39 +14,6 @@ const navLinks = [
   { href: "/contact", label: "Contact Us" },
 ];
 
-const LeafIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <path
-      d="M12 22C12 22 4 16 4 9C4 5.13 7.13 2 11 2C14.87 2 18 5.13 18 9C18 16 12 22 12 22Z"
-      fill="var(--canopy)"
-      opacity="0.9"
-    />
-    <path
-      d="M12 22C12 22 20 16 20 9C20 5.13 16.87 2 13 2"
-      stroke="var(--canopy)"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      opacity="0.6"
-    />
-    <line
-      x1="12"
-      y1="22"
-      x2="12"
-      y2="8"
-      stroke="var(--parchment)"
-      strokeWidth="1"
-      strokeLinecap="round"
-      opacity="0.5"
-    />
-  </svg>
-);
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -96,37 +64,33 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 group"
+              className="flex items-center gap-3 group"
               aria-label="AnjaHak Enterprises — Home"
             >
-              <LeafIcon />
-              <span
-                className="font-heading font-bold text-xl tracking-tight"
-                style={{ color: "var(--forest)" }}
-                aria-label="AnjaHak"
-              >
-                {"AnjaHak".split("").map((letter, i) => (
-                  <motion.span
-                    key={i}
-                    style={{ display: "inline-block" }}
-                    animate={{ y: [0, -2, 0] }}
-                    transition={{
-                      duration: 3,
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                      delay: i * 0.1,
-                    }}
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-              </span>
-              <span
-                className="font-label text-[0.6rem] tracking-widest uppercase hidden sm:block"
-                style={{ color: "var(--sage)" }}
-              >
-                Enterprises
-              </span>
+              <div className="relative overflow-hidden rounded-sm">
+                <Image
+                  src="/images/logo.png"
+                  alt="AnjaHak Enterprises"
+                  width={52}
+                  height={52}
+                  priority
+                  className="object-contain transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span
+                  className="font-heading font-bold text-lg leading-none"
+                  style={{ color: scrolled ? "var(--forest)" : "var(--parchment)" }}
+                >
+                  AnjaHak
+                </span>
+                <span
+                  className="font-label text-[0.6rem] tracking-widest uppercase hidden sm:block"
+                  style={{ color: scrolled ? "var(--sage)" : "rgba(250,246,238,0.65)" }}
+                >
+                  Enterprises
+                </span>
+              </div>
             </Link>
 
             {/* Desktop nav links */}
