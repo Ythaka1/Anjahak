@@ -8,8 +8,8 @@ import {
 import { MotionConfig } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
 import PageLoader from "@/components/ui/PageLoader";
-import ExportTicker from "@/components/ui/ExportTicker";
 import AmbientToggle from "@/components/ui/AmbientToggle";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import SeasonsBackground from "@/components/ui/SeasonsBackground";
@@ -116,16 +116,17 @@ export default function RootLayout({
       className={`${cormorant.variable} ${playfair.variable} ${dmSans.variable} ${spaceMono.variable}`}
     >
       <body>
-        <MotionConfig reducedMotion="user">
-          <PageLoader />
-          <SeasonsBackground />
-          <Navbar />
-          <ExportTicker />
-          {children}
-          <Footer />
-          <WhatsAppButton />
-          <AmbientToggle />
-        </MotionConfig>
+        <SmoothScroll>
+          <MotionConfig reducedMotion="user">
+            <PageLoader />
+            <SeasonsBackground />
+            <Navbar />
+            {children}
+            <Footer />
+            <WhatsAppButton />
+            <AmbientToggle />
+          </MotionConfig>
+        </SmoothScroll>
       </body>
     </html>
   );

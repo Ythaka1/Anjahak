@@ -9,14 +9,20 @@
 ───────────────────────────────────────────── */
 :root {
   /* Brand colours */
-  --earth:      #1A1208;
-  --forest:     #1B3A2D;
-  --canopy:     #2D5940;
-  --sage:       #6B8F71;
-  --harvest:    #C8920A;
-  --gold:       #E8B84B;
-  --dusk:       #F5EDD8;
-  --parchment:  #FAF6EE;
+  --earth:       #1A1208;
+  --forest-deep: #0E1F16;
+  --forest:      #1B3A2D;
+  --canopy:      #2D5940;
+  --sage:        #6B8F71;
+  --harvest:     #C8920A;
+  --gold:        #C6A24C;
+  --gold-soft:   #D8BD7E;
+  --dusk:        #F5EDD8;
+  --parchment:   #F3EDE0;
+  --roast:       #7A4E2E;
+  --hibiscus:    #7A1E2B;
+  --soy:         #5C6B3A;
+  --pasture:     #8A7A5E;
 
   /* Font families injected by next/font */
   --font-cormorant: '';
@@ -44,6 +50,30 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Lenis smooth-scroll (recommended base styles) */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
 
   body {
@@ -417,6 +447,22 @@
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION — render everything static
+───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ticker-track,
+  .ken-burns,
+  .bounce-slow,
+  .dot-ping {
+    animation: none !important;
+  }
 }
 
 /* ─────────────────────────────────────────────

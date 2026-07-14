@@ -10,13 +10,17 @@ const config: Config = {
     extend: {
       colors: {
         earth: "var(--earth)",
+        "forest-deep": "var(--forest-deep)",
         forest: "var(--forest)",
         canopy: "var(--canopy)",
         sage: "var(--sage)",
         harvest: "var(--harvest)",
         gold: "var(--gold)",
+        "gold-soft": "var(--gold-soft)",
         dusk: "var(--dusk)",
         parchment: "var(--parchment)",
+        roast: "var(--roast)",
+        hibiscus: "var(--hibiscus)",
       },
       fontFamily: {
         cormorant: ["var(--font-cormorant)", "Georgia", "serif"],
