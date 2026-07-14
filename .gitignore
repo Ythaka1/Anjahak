@@ -1,9 +1,7 @@
 node_modules/
 dist/
 build/
+.next/
 .env
 *.log
-.DS_Storenode_modules/
-.env
-build/
-dist/
+.DS_Store

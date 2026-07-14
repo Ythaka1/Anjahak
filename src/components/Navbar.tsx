@@ -21,6 +21,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
 
+  // Editorial homepage: the nav blends with whatever passes beneath it
+  // (mix-blend difference) instead of switching to a frosted background.
+  const isHome = pathname === "/";
+
   useEffect(() => {
     return scrollY.on("change", (v) => setScrolled(v > 80));
   }, [scrollY]);
@@ -33,11 +37,29 @@ export default function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  // Foreground ink. On the home page everything is pure white so the
+  // difference blend inverts it against light sections; when the mobile
+  // menu sheet (solid, light) is open the blend is off and ink goes dark.
+  const ink = isHome
+    ? menuOpen
+      ? "var(--earth)"
+      : "#fff"
+    : scrolled
+    ? "var(--earth)"
+    : "var(--parchment)";
+  const inkMuted = isHome
+    ? menuOpen
+      ? "var(--sage)"
+      : "rgba(255,255,255,0.7)"
+    : scrolled
+    ? "var(--sage)"
+    : "rgba(250,246,238,0.65)";
+
   return (
     <>
       <motion.nav
         animate={
-          scrolled
+          (scrolled && !isHome) || (isHome && menuOpen)
             ? {
                 backgroundColor: "rgba(250,246,238,0.72)",
                 backdropFilter: "blur(20px) saturate(180%)",
@@ -51,11 +73,13 @@ export default function Navbar() {
         }
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 right-0 z-50 border-b border-transparent"
-        style={
-          scrolled
-            ? { borderBottomColor: "rgba(255,255,255,0.3)" }
-            : { borderBottomColor: "transparent" }
-        }
+        style={{
+          borderBottomColor:
+            (scrolled && !isHome) || (isHome && menuOpen)
+              ? "rgba(255,255,255,0.3)"
+              : "transparent",
+          ...(isHome && !menuOpen ? { mixBlendMode: "difference" } : {}),
+        }}
         role="navigation"
         aria-label="Main navigation"
       >
@@ -67,25 +91,31 @@ export default function Navbar() {
               className="flex items-center gap-3 group"
               aria-label="AnjaHak Enterprises — Home"
             >
-              <Image
-                src="/images/logo.png"
-                alt="AnjaHak Enterprises"
-                width={52}
-                height={52}
-                priority
-                className="object-contain transition-transform duration-500 group-hover:scale-110"
-                style={{ mixBlendMode: "multiply" }}
-              />
+              {(!isHome || menuOpen) && (
+                <Image
+                  src="/images/logo.png"
+                  alt="AnjaHak Enterprises"
+                  width={52}
+                  height={52}
+                  priority
+                  className="object-contain transition-transform duration-500 group-hover:scale-110"
+                  style={{ mixBlendMode: "multiply" }}
+                />
+              )}
               <div className="flex flex-col leading-tight">
                 <span
-                  className="font-heading font-bold text-lg leading-none"
-                  style={{ color: scrolled ? "var(--forest)" : "var(--parchment)" }}
+                  className={
+                    isHome && !menuOpen
+                      ? "font-display text-xl leading-none"
+                      : "font-heading font-bold text-lg leading-none"
+                  }
+                  style={{ color: ink }}
                 >
                   AnjaHak
                 </span>
                 <span
                   className="font-label text-[0.6rem] tracking-widest uppercase hidden sm:block"
-                  style={{ color: scrolled ? "var(--sage)" : "rgba(250,246,238,0.65)" }}
+                  style={{ color: inkMuted }}
                 >
                   Enterprises
                 </span>
@@ -103,7 +133,9 @@ export default function Navbar() {
                     href={link.href}
                     className="relative font-sans text-sm font-medium transition-colors duration-200 group"
                     style={{
-                      color: isActive(link.href)
+                      color: isHome
+                        ? ink
+                        : isActive(link.href)
                         ? "var(--forest)"
                         : scrolled
                         ? "var(--earth)"
@@ -136,9 +168,7 @@ export default function Navbar() {
               <a
                 href="tel:+254721377422"
                 className="flex items-center gap-1.5 font-label text-[0.7rem] tracking-wide transition-opacity hover:opacity-80"
-                style={{
-                  color: scrolled ? "var(--sage)" : "rgba(250,246,238,0.75)",
-                }}
+                style={{ color: inkMuted }}
                 aria-label="Call AnjaHak: +254 721 377 422"
               >
                 <Phone size={11} />
@@ -146,7 +176,11 @@ export default function Navbar() {
               </a>
               <Link
                 href="/contact"
-                className="btn-primary text-sm px-5 py-2.5"
+                className={
+                  isHome && !menuOpen
+                    ? "btn-outline btn-outline--light text-sm px-5 py-2.5"
+                    : "btn-primary text-sm px-5 py-2.5"
+                }
                 aria-label="Get a quote from AnjaHak"
               >
                 Get Quote
@@ -156,7 +190,7 @@ export default function Navbar() {
             {/* Mobile hamburger */}
             <button
               className="lg:hidden p-2 rounded-lg transition-colors"
-              style={{ color: scrolled ? "var(--earth)" : "var(--parchment)" }}
+              style={{ color: ink }}
               onClick={() => setMenuOpen((o) => !o)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
